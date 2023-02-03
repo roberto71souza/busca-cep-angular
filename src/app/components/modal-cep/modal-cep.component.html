@@ -1,0 +1,37 @@
+<div class="modal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Cep buscado</h2>
+    </div>
+    <div class="modal-content">
+      <div class="item" *ngIf="!cepModelInput.erro; else buscaNaoEmcontrada">
+        <p><strong>Cep: </strong>{{ cepModelInput.cep }}</p>
+
+        <p><strong>Logradouro: </strong>{{ cepModelInput.logradouro }}</p>
+
+        <p><strong>Complemento: </strong>{{ cepModelInput.complemento }}</p>
+
+        <p><strong>Bairro: </strong>{{ cepModelInput.bairro }}</p>
+
+        <p><strong>Localidade: </strong>{{ cepModelInput.localidade }}</p>
+
+        <p><strong>Uf: </strong>{{ cepModelInput.uf }}</p>
+
+        <p><strong>Ddd: </strong>{{ cepModelInput.ddd }}</p>
+      </div>
+
+      <ng-template #buscaNaoEmcontrada>
+        <div class="item">
+          <h1>Busca não encontrada</h1>
+        </div>
+      </ng-template>
+
+      <div class="btn-modal-options">
+        <button class="btn-cancel" (click)="close()">Cancelar</button>
+        <a class="btn-ok" href="{{ cepModelInput.urlMaps }}" target="_blank"
+          >Ir ate</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <header>
+    <h1>Sistema de busca de CEP</h1>
+  </header>
+  <section id="content">
+    <div class="content-busca">
+      <input
+        [(ngModel)]="inputPesquisa"
+        type="text"
+        placeholder="Digite aqui o cep desejado"
+      />
+      <button type="submit" (click)="buscar()">Buscar</button>
+    </div>
+    <div *ngIf="listaCeps.length > 0" class="content-resultados">
+      <div *ngFor="let cep of listaCeps" class="resultados-items">
+        <div class="items-options">
+          <button
+            title="excluir"
+            type="submit"
+            class="btn-excluir"
+            (click)="excluirBusca(cep.cep)"
+          ></button>
+          <button
+            title="detalhe"
+            type="submit"
+            class="btn-detalhes"
+            (click)="detalhesBusca(cep.cep)"
+          ></button>
+        </div>
+
+        <span>{{ cep.cep }}</span>
+        <span>{{ cep.logradouro }}</span>
+      </div>
+    </div>
+  </section>
+</div>
+<app-modal-cep *ngIf="modalService.showModal" [cepModelInput]="cepModel">
+</app-modal-cep>
