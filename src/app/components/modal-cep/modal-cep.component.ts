@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cep } from 'src/app/model/cep';
 
 @Component({
@@ -10,11 +9,13 @@ import { Cep } from 'src/app/model/cep';
 export class ModalCepComponent implements OnInit {
   @Input() cepModelInput = new Cep();
 
-  constructor(public modalService: ModalService) {}
+  @Output() closeModal = new EventEmitter<boolean>();
+
+  constructor() {}
 
   ngOnInit(): void {}
 
   close() {
-    this.modalService.showModal = false;
+    this.closeModal.emit(false);
   }
 }

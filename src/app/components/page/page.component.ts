@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
 import { CepService } from 'src/app/services/cep.service';
 import { environment } from 'src/environments/environment';
 import { Cep } from 'src/app/model/cep';
@@ -13,14 +12,13 @@ export class PageComponent implements OnInit {
   cepModel = new Cep();
   inputPesquisa!: string;
 
+  showModal: boolean = false;
+
   get listaCeps(): Cep[] {
     return this.cepService.getCepListLocalStorage();
   }
 
-  constructor(
-    private cepService: CepService,
-    public modalService: ModalService
-  ) {}
+  constructor(private cepService: CepService) {}
 
   ngOnInit(): void {}
 
@@ -41,7 +39,7 @@ export class PageComponent implements OnInit {
         },
       })
       .add(() => {
-        this.modalService.showModal = true;
+        this.showModal = true;
         this.inputPesquisa = '';
       });
   }
@@ -55,7 +53,11 @@ export class PageComponent implements OnInit {
 
     if (cepResult !== undefined) {
       this.cepModel = cepResult;
-      this.modalService.showModal = true;
+      this.showModal = true;
     }
+  }
+
+  emitCloseModal($event: boolean): void {
+    this.showModal = $event;
   }
 }

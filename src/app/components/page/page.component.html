@@ -34,5 +34,5 @@
     </div>
   </section>
 </div>
-<app-modal-cep *ngIf="modalService.showModal" [cepModelInput]="cepModel">
+<app-modal-cep *ngIf="showModal" [cepModelInput]="cepModel" (closeModal)="emitCloseModal($event)">
 </app-modal-cep>
